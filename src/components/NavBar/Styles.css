@@ -1,4 +1,4 @@
-.navegador {
+nav{
     display: flex;
     flex-direction: row;
     position: fixed;
@@ -9,7 +9,6 @@
     top: 0px;
     height: 69px;
 }
-
-nav {
-    display: flex;
+a {
+    color: white;
 }
