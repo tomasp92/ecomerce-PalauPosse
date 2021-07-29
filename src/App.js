@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Header from './components/Header'
+import Header from './components/Header/index'
 import ItemListContainer from './components/ItemListContainer'
 import './Styles.css'
 const App = () => {

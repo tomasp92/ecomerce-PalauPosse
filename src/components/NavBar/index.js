@@ -1,10 +1,11 @@
 import CartWidget from './CartWidget'
+import Image from 'react-bootstrap/Image'
 // import Dropdown from 'react-bootstrap/Dropdown'
 import './Styles.css'
 
 const NavBar = () =>
     <nav>
-        <h1>SushiBar</h1>
+        <Image src="logo192.png" roundedCircle />
        {/* <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Menu
