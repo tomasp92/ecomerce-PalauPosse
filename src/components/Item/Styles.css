@@ -1,8 +1,14 @@
 .card {
-    width: 18rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
     align-content: center;
+}
+
+@media screen and (min-width: 914px){
+    .card {
+        width: 18rem;
+    }
 }

@@ -1,17 +1,20 @@
 import CartWidget from './CartWidget'
 import Image from 'react-bootstrap/Image'
 import Dropdown from 'react-bootstrap/Dropdown'
+import {Link} from 'react-router-dom'
 import './Styles.css'
-const logo = <Image src="logo192.png" roundedCircle />
+const logo = <Image className='logo' src="logo192.png" />
 const NavBar = () =>{
-    if (window.innerWidth > 1000){
+    if (window.innerWidth > 539){
         return(
         <nav>
-            {logo}
-            <p><a href='#'>Conocenos</a></p>
-            <p><a href='#'>Delivery</a></p>
-            <p><a href='#'>Contacto</a></p>
-            <p><a href='#'><CartWidget /></a></p>
+            <Link to='/'>{logo}</Link>
+            <Link to='/Conocenos'>Categoria</Link>
+            <Link to='/Delivery'>Delivery</Link>
+            <Link to='/Contacto'>Contacto</Link>
+            <Link to='/Categoria/1'>Categoria 1</Link>
+            <Link to='/Categoria/2'>Categoria 2</Link>
+            <Link to='#'><CartWidget /></Link>
         </nav>
         )
     } else {
@@ -22,12 +25,12 @@ const NavBar = () =>{
                     Menu
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Conocenos</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Delivery</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Contacto</Dropdown.Item>
+                    <Dropdown.Item><Link to='#'>Conocenos</Link></Dropdown.Item>
+                    <Dropdown.Item><Link to='#'>Delivery</Link></Dropdown.Item>
+                    <Dropdown.Item><Link to='#'>Contacto</Link></Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-            {logo}
+            <Link>{logo}</Link>
         </nav>
     )
     }
