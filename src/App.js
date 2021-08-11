@@ -3,6 +3,7 @@ import Header from './components/Header/index'
 import ItemListContainer from './components/ItemListContainer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './Styles.css'
+import ItemDetailContainer from './components/ItemDetailContainer/index';
 const App = () => {
   const greeting = 'Acá va la lista de productos'
   return (
@@ -11,14 +12,15 @@ const App = () => {
       <div className='body' >
         <div className='content'>
           <Switch>
-            <Route path='/Categoria/:id' component={ItemListContainer}/>
-            <Route path='/'>
+            <Route path='/Categoria/:id'>
               <ItemListContainer className='ItemListContainer' greeting={greeting} />
             </Route>
+            <Route path='/item/:id' component={ItemDetailContainer} />
+            <Route exact path='/' component={ItemListContainer} />
           </Switch>
         </div>
       </div>
-      </BrowserRouter>
-      )
+    </BrowserRouter>
+  )
 }
       export default App

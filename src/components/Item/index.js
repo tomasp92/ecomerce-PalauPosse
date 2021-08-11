@@ -1,14 +1,18 @@
 import ItemCount from './../ItemCount/index';
 import Card from 'react-bootstrap/Card'
 import './Styles.css'
+import { Link } from 'react-router-dom';
 
-const Item = ({title, img, description, price})=> {
+const Item = ({ title, img, description, price, id})=> {
     const onAdd = (cantidad) => console.log(cantidad)
+    console.log(img)
     return (
         <Card className="card">
             <Card.Img variant="top" src={img} />
             <Card.Body>
-                <Card.Title>{title}</Card.Title>
+                <Link class='link' to={`/item/${id}`}>
+                    <Card.Title>{title}</Card.Title>
+                </Link>
                 <Card.Text>
                     {description}
                 </Card.Text>

@@ -9,9 +9,6 @@ const NavBar = () =>{
         return(
         <nav>
             <Link to='/'>{logo}</Link>
-            <Link to='/Conocenos'>Categoria</Link>
-            <Link to='/Delivery'>Delivery</Link>
-            <Link to='/Contacto'>Contacto</Link>
             <Link to='/Categoria/1'>Categoria 1</Link>
             <Link to='/Categoria/2'>Categoria 2</Link>
             <Link to='#'><CartWidget /></Link>

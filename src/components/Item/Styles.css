@@ -6,7 +6,9 @@
     text-align: center;
     align-content: center;
 }
-
+.link {
+    color: black;
+}
 @media screen and (min-width: 914px){
     .card {
         width: 18rem;
