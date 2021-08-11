@@ -3,7 +3,10 @@ import Header from './components/Header/index'
 import ItemListContainer from './components/ItemListContainer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './Styles.css'
-import ItemDetailContainer from './components/ItemDetailContainer/index';
+import ItemDetailContainer from './components/ItemDetailContainer/index'
+// import CustomProvider from './CartContext';
+
+
 const App = () => {
   const greeting = 'Acá va la lista de productos'
   return (
@@ -23,4 +26,4 @@ const App = () => {
     </BrowserRouter>
   )
 }
-      export default App
+export default App

@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Styles.css'
 import ItemDetail from './../ItemDetail/index';
-import { Spinner } from 'react-bootstrap';
+import Loading from './../Loading';
 
-const items = [
+const productos = [
     {
       id: 0,
       title: 'Nigiri',
@@ -26,39 +26,35 @@ const items = [
 
 const ItemDetailContainer = () => {
   const params = useParams()
-  console.log(params)
-  const [producto, setProducto] = useState([])
+  console.log("params", params)
+  const [item, setItem] = useState({})
   const [loading, setLoading] = useState(true)
+
   const getItems = () => {
-    const promise = new Promise((res)=>{
+    const promise = new Promise((resolve, reject)=>{
       setTimeout(()=>{
-        res(items)
+        resolve(productos.filter(prod => prod.id === parseInt(params.id)))
+        reject("Ocurrió un error al traer los productos")
       }, 2000)
     })
     return promise
   }
+
   useEffect(()=>{
-    const allItems = getItems()
-    allItems.then((productos)=>{
-      const producto = productos.filter(producto=> producto.categoria === params.id)
-      setProducto(producto)
+    const items = getItems()
+    items.then((res)=>{
+      setItem(res)
       setLoading(false)
     })
-    allItems.catch ((error)=>{
+    items.catch ((error)=>{
         console.log('error', error)
     })
-    
-  },[])
-  if(loading){
-    console.log("!producto")
-    return( 
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
-    )
-  }
+  },[params])
+  
   return (
-    <ItemDetail item={producto}/>
+    <>
+      {loading? <Loading /> : <ItemDetail item={item}/>}
+    </>
   )
 }
 

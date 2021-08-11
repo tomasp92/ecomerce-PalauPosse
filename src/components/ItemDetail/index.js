@@ -2,7 +2,7 @@ import ItemCount from './../ItemCount/index';
 import Card from 'react-bootstrap/Card'
 import './Styles.css'
 const ItemDetail = ({ item }) => {
-  console.log("🚀 ~ item", item)
+  console.log("🚀 ~ item on item detail", item)
   const onAdd = (cantidad) => console.log(cantidad)
   return (
     <Card className="card">
@@ -18,7 +18,7 @@ const ItemDetail = ({ item }) => {
             <ItemCount stock={5} initial={1} onAdd={onAdd} />
         </Card.Body>
     </Card>
-)
+  )
 }
 
 export default ItemDetail

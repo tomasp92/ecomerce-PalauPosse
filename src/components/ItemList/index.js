@@ -1,80 +1,70 @@
 import { useEffect, useState } from 'react';
 import Item from '../Item/index';
 import './Styles.css'
-import { Spinner } from 'react-bootstrap';
+import Loading from './../Loading';
+
+const products = [
+    {
+        id: 0,
+        title: 'Nigiri',
+        description: 'Pequeño bloque ovalado de arroz frío cubierto con wasabi y una rebanada fina de salmón',
+        price: 100,
+        pictureUrl: 'productos/Nigiri.jpg',
+        categoria: 1
+      },
+      {
+        id: 1,
+        title: 'Sahmi',
+        description: 'Rebanada fina de salmón',
+        price: 70,
+        pictureUrl: 'productos/sahimi.jpg',
+        categoria: 2
+      }
+]
 
 const ItemList = ({params})=> {
     console.log("🚀 ~ params", params)
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
-    const [showProductos, setShowProductos] = useState([])
     const onAdd = (cantidad) => console.log(cantidad)
-    useEffect(()=>{
-        const promise = new Promise((res)=>{
-            setTimeout(()=>{
-                const products = [
-                {
-                    id: 0,
-                    title: 'Nigiri',
-                    description: 'Pequeño bloque ovalado de arroz frío cubierto con wasabi y una rebanada fina de salmón',
-                    price: 100,
-                    pictureUrl: 'productos/Nigiri.jpg',
-                    categoria: '1'
-                  },
-                  {
-                    id: 1,
-                    title: 'Sahmi',
-                    description: 'Rebanada fina de salmón',
-                    price: 70,
-                    pictureUrl: 'productos/sahimi.jpg',
-                    categoria: '2'
-                  }
-                ]
-                res(products)
+    useEffect(() => {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                console.log("setTimeOut");
+                if (params.id) {
+                    resolve(products.filter(prod => prod.categoria === parseInt(params.id)))
+                } else {
+                    resolve(products)
+                };
+                reject("Ocurrió un error al traer los productos")
             }, 2000)
+            
         })
-        promise.then((res)=>{
-            console.log('res', res)
-            setProductos(res)
+        promise.then((resolve) => {
+            setProductos(resolve)
             setLoading(false)
-            console.log('then', productos)
         })
-        promise.catch ((error)=>{
-            console.log(error)
-        })
-    },[])
-    useEffect(()=>{
-        if (params.id){
-            console.log('entra al if')
-            const filtroPorCategoria = productos.filter(producto=> producto.categoria === params.id)
-            setShowProductos(filtroPorCategoria)
-        }else{
-            console.log('entra al else. productos', productos)
-            setShowProductos(productos)
-        }
-        console.log('entra al use effect')
-    },[params])
-    if(loading){
-        return( 
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        )
-    }
+        
+    }, [params]);
     return(
-        <div className='itemList'>
-            {showProductos.map(producto => 
-                <Item
-                key={producto.id} 
-                img={producto.pictureUrl}
-                title={producto.title}
-                description={producto.description}
-                price={producto.price}
-                id={producto.id}
-                />
-            )
+        <>
+            { loading ? 
+                <Loading /> 
+                :
+                <div className='itemList'>
+                    {productos.map(producto => 
+                        <Item
+                        key={producto.id} 
+                        img={producto.pictureUrl}
+                        title={producto.title}
+                        description={producto.description}
+                        price={producto.price}
+                        id={producto.id}
+                        />
+                    )}
+                </div>
             }
-        </div>
+        </>
     )
     
 }
