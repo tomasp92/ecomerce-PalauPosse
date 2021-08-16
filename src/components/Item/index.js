@@ -19,7 +19,6 @@ const Item = ({ title, img, description, price, id})=> {
                 <div>
                     {price}
                 </div>
-                <ItemCount stock={5} initial={1} onAdd={onAdd} />
             </Card.Body>
         </Card>
     )

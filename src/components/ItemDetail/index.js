@@ -1,9 +1,17 @@
 import ItemCount from './../ItemCount/index';
 import Card from 'react-bootstrap/Card'
 import './Styles.css'
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 const ItemDetail = ({ item }) => {
-  console.log("🚀 ~ item on item detail", item)
-  const onAdd = (cantidad) => console.log(cantidad)
+  let history = useHistory()
+  const [itemNumber, setItemNumber] = useState(false)
+  const onAdd = (cantidad) => {
+    setItemNumber(cantidad)
+  }
+  function goToCart() {
+    history.push('/Cart')
+  }
   return (
     <Card className="card">
         <Card.Img variant="top" src={item.pictureUrl} />
@@ -15,7 +23,9 @@ const ItemDetail = ({ item }) => {
             <div>
                 {item.price}
             </div>
-            <ItemCount stock={5} initial={1} onAdd={onAdd} />
+            { itemNumber ? 
+              <button onClick={goToCart }>Termina tu compra</button> : 
+              <ItemCount stock={5} initial={1} onAdd={onAdd} />}
         </Card.Body>
     </Card>
   )
