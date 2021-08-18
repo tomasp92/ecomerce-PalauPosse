@@ -1,20 +1,7 @@
-import { useState } from 'react'
-import { createContext } from "react";
+import { createContext } from "react"
 
+const CartContext = createContext();
 
+export const { Consumer, Provider } = CartContext;
 
-const CustomProvider = ({children})=>{
-    const contexto = createContext()
-    const [misDatos, setMisDatos] = useState('mis datos')
-
-    const addItem = ()=>{
-
-    }
-
-    return(
-        <Provider>
-        </Provider>
-        )
-}
-
-export default CustomProvider
+export default CartContext

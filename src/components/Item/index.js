@@ -10,7 +10,7 @@ const Item = ({ title, img, description, price, id})=> {
         <Card className="card">
             <Card.Img variant="top" src={img} />
             <Card.Body>
-                <Link class='link' to={`/item/${id}`}>
+                <Link className='link' to={`/item/${id}`}>
                     <Card.Title>{title}</Card.Title>
                 </Link>
                 <Card.Text>

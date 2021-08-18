@@ -4,28 +4,30 @@ import ItemListContainer from './components/ItemListContainer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './Styles.css'
 import ItemDetailContainer from './components/ItemDetailContainer/index'
-// import CustomProvider from './CartContext';
 import Cart from './components/Cart/index';
+import CustomProvider from './CustomProvider';
 
 
 const App = () => {
   const greeting = 'Acá va la lista de productos'
   return (
-    <BrowserRouter>
-      <Header />
-      <div className='body' >
-        <div className='content'>
-          <Switch>
-            <Route path='/Categoria/:id'>
-              <ItemListContainer className='ItemListContainer' greeting={greeting} />
-            </Route>
-            <Route path='/item/:id' component={ItemDetailContainer} />
-            <Route exact path='/Cart' component={Cart} />
-            <Route exact path='/' component={ItemListContainer} />
-          </Switch>
+    <CustomProvider>    
+      <BrowserRouter>
+        <Header />
+        <div className='body' >
+          <div className='content'>
+            <Switch>
+              <Route path='/Categoria/:id'>
+                <ItemListContainer className='ItemListContainer' greeting={greeting} />
+              </Route>
+              <Route path='/item/:id' component={ItemDetailContainer} />
+              <Route exact path='/Cart' component={Cart} />
+              <Route exact path='/' component={ItemListContainer} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </CustomProvider> 
   )
 }
 export default App

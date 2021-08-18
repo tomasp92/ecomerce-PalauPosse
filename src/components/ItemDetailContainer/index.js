@@ -10,7 +10,7 @@ const productos = [
       title: 'Nigiri',
       description: 'Pequeño bloque ovalado de arroz frío cubierto con wasabi y una rebanada fina de salmón',
       price: 100,
-      pictureUrl: 'productos/Nigiri.jpg',
+      pictureUrl: '/productos/Nigiri.jpg',
       categoria: '1'
     },
     {
@@ -18,7 +18,7 @@ const productos = [
       title: 'Sahmi',
       description: 'Rebanada fina de salmón',
       price: 70,
-      pictureUrl: 'productos/sahimi.jpg',
+      pictureUrl: '/productos/sahimi.jpg',
       categoria: '2'
     }
   ]

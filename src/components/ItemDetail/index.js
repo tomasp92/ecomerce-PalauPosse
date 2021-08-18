@@ -1,15 +1,19 @@
-import ItemCount from './../ItemCount/index';
+import ItemCount from './../ItemCount/index'
 import Card from 'react-bootstrap/Card'
 import './Styles.css'
-import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useState, useContext } from 'react'
+import { useHistory } from 'react-router-dom'
+import CartContext from '../../CartContext'
 const ItemDetail = ({ item }) => {
+  const {addItem} = useContext(CartContext)
+  
   let history = useHistory()
   const [itemNumber, setItemNumber] = useState(false)
   const onAdd = (cantidad) => {
     setItemNumber(cantidad)
   }
-  function goToCart() {
+  function addToCart() {
+    addItem(item[0], itemNumber)
     history.push('/Cart')
   }
   return (
@@ -24,8 +28,9 @@ const ItemDetail = ({ item }) => {
                 {item.price}
             </div>
             { itemNumber ? 
-              <button onClick={goToCart }>Termina tu compra</button> : 
-              <ItemCount stock={5} initial={1} onAdd={onAdd} />}
+              <button onClick={addToCart }>Termina tu compra</button> : 
+              <ItemCount stock={5} initial={1} onAdd={onAdd} />
+            }
         </Card.Body>
     </Card>
   )
