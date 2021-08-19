@@ -26,14 +26,13 @@ const productos = [
 
 const ItemDetailContainer = () => {
   const params = useParams()
-  console.log("params", params)
   const [item, setItem] = useState({})
   const [loading, setLoading] = useState(true)
 
   const getItems = () => {
     const promise = new Promise((resolve, reject)=>{
       setTimeout(()=>{
-        resolve(productos.filter(prod => prod.id === parseInt(params.id)))
+        resolve(productos.find(prod => prod.id === parseInt(params.id)))
         reject("Ocurrió un error al traer los productos")
       }, 2000)
     })

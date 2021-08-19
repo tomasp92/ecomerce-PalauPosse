@@ -13,7 +13,7 @@ const ItemDetail = ({ item }) => {
     setItemNumber(cantidad)
   }
   function addToCart() {
-    addItem(item[0], itemNumber)
+    addItem(item, itemNumber)
     history.push('/Cart')
   }
   return (

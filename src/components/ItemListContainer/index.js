@@ -5,7 +5,6 @@ import './Styles.css'
 const ItemListContainer = ({ greeting }) => {
   const params = useParams()
   const onAdd = (cantidad) => console.log(cantidad)
-  console.log(params)
   return (
     <div className="itemListContainer">
       {greeting}

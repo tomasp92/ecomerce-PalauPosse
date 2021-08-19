@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const Item = ({ title, img, description, price, id})=> {
     const onAdd = (cantidad) => console.log(cantidad)
-    console.log(img)
     return (
         <Card className="card">
             <Card.Img variant="top" src={img} />

@@ -9,7 +9,7 @@ const products = [
         title: 'Nigiri',
         description: 'Pequeño bloque ovalado de arroz frío cubierto con wasabi y una rebanada fina de salmón',
         price: 100,
-        pictureUrl: 'productos/Nigiri.jpg',
+        pictureUrl: '/productos/Nigiri.jpg',
         categoria: 1
       },
       {
@@ -17,20 +17,18 @@ const products = [
         title: 'Sahmi',
         description: 'Rebanada fina de salmón',
         price: 70,
-        pictureUrl: 'productos/sahimi.jpg',
+        pictureUrl: '/productos/sahimi.jpg',
         categoria: 2
       }
 ]
 
 const ItemList = ({params})=> {
-    console.log("🚀 ~ params", params)
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
     const onAdd = (cantidad) => console.log(cantidad)
     useEffect(() => {
         const promise = new Promise((resolve, reject) => {
             setTimeout(() => {
-                console.log("setTimeOut");
                 if (params.id) {
                     resolve(products.filter(prod => prod.categoria === parseInt(params.id)))
                 } else {
