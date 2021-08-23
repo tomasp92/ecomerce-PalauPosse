@@ -1,28 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Styles.css'
-import ItemDetail from './../ItemDetail/index';
-import Loading from './../Loading';
-
-const productos = [
-    {
-      id: 0,
-      title: 'Nigiri',
-      description: 'Pequeño bloque ovalado de arroz frío cubierto con wasabi y una rebanada fina de salmón',
-      price: 100,
-      pictureUrl: '/productos/Nigiri.jpg',
-      categoria: '1'
-    },
-    {
-      id: 1,
-      title: 'Sahmi',
-      description: 'Rebanada fina de salmón',
-      price: 70,
-      pictureUrl: '/productos/sahimi.jpg',
-      categoria: '2'
-    }
-  ]
-  
+import ItemDetail from './../ItemDetail/index'
+import Loading from './../Loading'
+import { firestore } from './../../firebase'
 
 const ItemDetailContainer = () => {
   const params = useParams()
@@ -30,19 +11,16 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true)
 
   const getItems = () => {
-    const promise = new Promise((resolve, reject)=>{
-      setTimeout(()=>{
-        resolve(productos.find(prod => prod.id === parseInt(params.id)))
-        reject("Ocurrió un error al traer los productos")
-      }, 2000)
-    })
-    return promise
+    return firestore.collection('productos').doc(`${params.id}`).get()
   }
 
   useEffect(()=>{
     const items = getItems()
-    items.then((res)=>{
-      setItem(res)
+    items.then((documento)=>{
+      const id = documento.id
+      const data = documento.data()
+      const producto = {id, ...data}
+      setItem(producto)
       setLoading(false)
     })
     items.catch ((error)=>{

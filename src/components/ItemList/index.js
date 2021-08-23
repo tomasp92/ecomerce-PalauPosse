@@ -1,45 +1,31 @@
-import { useEffect, useState } from 'react';
-import Item from '../Item/index';
+import { useEffect, useState } from 'react'
+import Item from '../Item/index'
 import './Styles.css'
-import Loading from './../Loading';
-
-const products = [
-    {
-        id: 0,
-        title: 'Nigiri',
-        description: 'Pequeño bloque ovalado de arroz frío cubierto con wasabi y una rebanada fina de salmón',
-        price: 100,
-        pictureUrl: '/productos/Nigiri.jpg',
-        categoria: 1
-      },
-      {
-        id: 1,
-        title: 'Sahmi',
-        description: 'Rebanada fina de salmón',
-        price: 70,
-        pictureUrl: '/productos/sahimi.jpg',
-        categoria: 2
-      }
-]
+import Loading from './../Loading'
+import { firestore } from './../../firebase'
 
 const ItemList = ({params})=> {
     const [productos, setProductos] = useState([])
     const [loading, setLoading] = useState(true)
     const onAdd = (cantidad) => console.log(cantidad)
     useEffect(() => {
-        const promise = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if (params.id) {
-                    resolve(products.filter(prod => prod.categoria === parseInt(params.id)))
-                } else {
-                    resolve(products)
-                };
-                reject("Ocurrió un error al traer los productos")
-            }, 2000)
-            
-        })
-        promise.then((resolve) => {
-            setProductos(resolve)
+        let query
+        const collectionProductos = firestore.collection('productos')
+        if(params.id){
+            const filtro = collectionProductos.where('categoria', '==', parseInt(params.id))
+            query = filtro.get()
+        } else {
+            query = collectionProductos.get()
+        }
+        query.then((resultados)=>{
+            const resultadoParseado = []
+            resultados.forEach((documento)=>{
+                const id = documento.id
+                const data = documento.data()
+                const dataFinal = {id, ...data}
+                resultadoParseado.push(dataFinal)
+            })
+            setProductos(resultadoParseado)
             setLoading(false)
         })
         
