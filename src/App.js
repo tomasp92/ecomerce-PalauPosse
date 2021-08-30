@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header/index'
-import ItemListContainer from './components/ItemListContainer'
+import ItemListContainer from './pages/ItemListContainer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './Styles.css'
-import ItemDetailContainer from './components/ItemDetailContainer/index'
-import Cart from './components/Cart/index';
+import ItemDetailContainer from './pages/ItemDetailContainer/index'
+import Cart from './pages/Cart/index';
 import CustomProvider from './CustomProvider';
 
 

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import './Styles.css'
-import ItemDetail from './../ItemDetail/index'
-import Loading from './../Loading'
 import { firestore } from './../../firebase'
+import Loading from './../../components/Loading'
+import ItemDetail from './../../components/ItemDetail'
+
 
 const ItemDetailContainer = () => {
   const params = useParams()
@@ -24,7 +25,7 @@ const ItemDetailContainer = () => {
       setLoading(false)
     })
     items.catch ((error)=>{
-        console.log('error', error)
+      console.log('error', error)
     })
   },[params])
   

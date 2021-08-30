@@ -3,7 +3,7 @@ import Image from 'react-bootstrap/Image'
 import Dropdown from 'react-bootstrap/Dropdown'
 import {Link} from 'react-router-dom'
 import './Styles.css'
-const logo = <Image className='logo' src="/logo192.png" />
+const logo = <Image className='logo' src="/branding/logo.png" />
 const NavBar = () =>{
     if (window.innerWidth > 539){
         return(
