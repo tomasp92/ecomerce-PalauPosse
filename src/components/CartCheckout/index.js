@@ -4,17 +4,20 @@ import './Styles.css'
 import Item from './../Item'
 import { firestore } from './../../firebase'
 import { useState } from 'react'
-import Loading from './../Loading';
+import Loading from './../Loading'
+import ToastMessege from './../ToastMessege'
+
 
 const CartCheckout = ({carrito, totalPrice})=>{
-    console.log("🚀 ~ carrito", carrito)
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('')
     const [telefono, setTelefono] = useState('')
     const [idDeOrden, setIdDeOrden] = useState('')
     const [loading, setLoading] = useState(false)
     const [mensajeCheckout, setMensajeCheckout] = useState(false)
+    const [toast, setToast] = useState(false)
     const ordenCompletada = <div> Tu orden fue completada con exito, ante cualquier duda comunicarse con el id de orden: {idDeOrden} </div>
+  
     const submitForm = ()=>{
         setLoading(true)
         const productosCheckout = carrito.map((producto)=> {
@@ -41,8 +44,8 @@ const CartCheckout = ({carrito, totalPrice})=>{
             setIdDeOrden(id)
             setLoading(false)
             setMensajeCheckout(true)
-        }).catch(err =>{
-            console.log("🚀 ~ err", err)
+        }).catch( () =>{
+            setToast(true)
         })
     }
     return(
@@ -83,6 +86,7 @@ const CartCheckout = ({carrito, totalPrice})=>{
                     <Button variant="primary" type="submit" onClick={submitForm}>
                         {loading? <Loading /> : 'Enviar'}
                     </Button>
+                    { toast && <ToastMessege setToast={setToast} title='Hubo un error' text='Su pedido no pudo ser colocado, intentelo nuevamente' /> }
                 </>
             }
         </div>
