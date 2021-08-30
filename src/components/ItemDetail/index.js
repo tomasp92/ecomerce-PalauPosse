@@ -16,6 +16,7 @@ const ItemDetail = ({ item }) => {
     addItem(item, itemNumber)
     history.push('/Cart')
   }
+  console.log(item)
   return (
     <Card className="card">
         <Card.Img variant="top" src={item.pictureUrl} />
@@ -29,7 +30,7 @@ const ItemDetail = ({ item }) => {
             </div>
             { itemNumber ? 
               <button onClick={addToCart }>Termina tu compra</button> : 
-              <ItemCount stock={5} initial={1} onAdd={onAdd} />
+              <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
             }
         </Card.Body>
     </Card>

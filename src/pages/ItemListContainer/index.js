@@ -38,7 +38,6 @@ const ItemListContainer = ({ greeting }) => {
         <Loading /> 
         :
         <div className="itemListContainer">
-          {greeting}
           <ItemList params={params} productos={productos}/>
         </div>
       }

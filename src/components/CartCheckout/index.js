@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Loading from './../Loading';
 
 const CartCheckout = ({carrito, totalPrice})=>{
+    console.log("🚀 ~ carrito", carrito)
     const [nombre, setNombre] = useState('')
     const [email, setEmail] = useState('')
     const [telefono, setTelefono] = useState('')
@@ -17,6 +18,9 @@ const CartCheckout = ({carrito, totalPrice})=>{
     const submitForm = ()=>{
         setLoading(true)
         const productosCheckout = carrito.map((producto)=> {
+            firestore.collection('productos').doc(`${producto.item.id}`).update({
+                stock: producto.item.stock - producto.quantity
+            })
             return { 
                 id: producto.item.id, 
                 title: producto.item.title, 
@@ -32,13 +36,13 @@ const CartCheckout = ({carrito, totalPrice})=>{
         }
         
         firestore.collection('orders').add(newOrder)
+
         .then(({ id }) => {
             setIdDeOrden(id)
             setLoading(false)
             setMensajeCheckout(true)
         }).catch(err =>{
             console.log("🚀 ~ err", err)
-            
         })
     }
     return(
