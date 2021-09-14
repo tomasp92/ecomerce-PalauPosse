@@ -5,10 +5,9 @@ import { firestore } from '../../firebase'
 import ItemList from './../../components/ItemList'
 import Loading from './../../components/Loading'
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
   const params = useParams()
-  const onAdd = (cantidad) => console.log(cantidad)
-  
+
   const [productos, setProductos] = useState([])
   const [loading, setLoading] = useState(true)
   useEffect(() => {

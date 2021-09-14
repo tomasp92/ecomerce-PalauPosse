@@ -8,9 +8,7 @@ import Cart from './pages/Cart/index';
 import CustomProvider from './CustomProvider';
 
 
-const App = () => {
-  const greeting = 'Acá va la lista de productos'
-  return (
+const App = () => 
     <CustomProvider>    
       <BrowserRouter>
         <Header />
@@ -18,7 +16,7 @@ const App = () => {
           <div className='content'>
             <Switch>
               <Route path='/Categoria/:id'>
-                <ItemListContainer className='ItemListContainer' greeting={greeting} />
+                <ItemListContainer className='ItemListContainer' />
               </Route>
               <Route path='/item/:id' component={ItemDetailContainer} />
               <Route exact path='/Cart' component={Cart} />
@@ -28,6 +26,5 @@ const App = () => {
         </div>
       </BrowserRouter>
     </CustomProvider> 
-  )
-}
+
 export default App

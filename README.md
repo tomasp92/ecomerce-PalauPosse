@@ -1,70 +1,33 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
+# Como correr el proyecto en local
+Entrar a la carpeta donde querrás alojar el repositorio. En una terminal en esa carpeta utilizar git clone para clonar el repo utilizando el metodo [HTTPS](https://github.com/tomasp92/ecommerce-PalauPosse.git)
+`git clone https://github.com/tomasp92/ecommerce-PalauPosse.git`
+Luego entre al repositorio con la terminal:
+`cd ecommerce-PalauPosse`
+instale las dependencias:
+`npm install`
+realice un update de las mismas:
+`npm update --force`
+una vez echo esto puede correr el proyecto con:
 ### `npm start`
+Automaticamente se abrira [http://localhost:3000](http://localhost:3000) y se verá el proyecto. En caso que no se abra abrir manualmente.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#Dependencias
+## React App
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+El proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
+## Firebase
+Es la librería utilizada como base de datos, utilizada para terciarizar el alamcenado de los datos sin necesidad de encargarnos del backend del proyecto.
+## React-router-dom
 
-### `npm test`
+Se utilizó para manejar las rutas del proyecto. Con esta librería podemos hacer que React contenga diferentes paginas dentro del mismo sitio y realizar rutas tanto estaticas como dinamicas.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## React bootstrap
+Con el fin de facilitar y agilizar el trabajo con los estilos de la aplicación se instalo React Bootstrap.
 
-### `npm run build`
+## Fontawesome
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Los iconos fueron utilizados con esta librería con el fin de facilitar el trabajo con los mismos.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Convenciones
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Tanto las variables como las clases utilizaran camel-case, los componentes se escribiran en pascal-case.

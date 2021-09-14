@@ -1,25 +1,27 @@
-import { FloatingLabel, Form } from "react-bootstrap"
-import Button from 'react-bootstrap/Button'
 import './Styles.css'
 import Item from './../Item'
 import { firestore } from './../../firebase'
 import { useState } from 'react'
-import Loading from './../Loading'
+import CustomForm from './Form'
 import ToastMessege from './../ToastMessege'
 
 
 const CartCheckout = ({carrito, totalPrice})=>{
-    const [nombre, setNombre] = useState('')
-    const [email, setEmail] = useState('')
-    const [telefono, setTelefono] = useState('')
     const [idDeOrden, setIdDeOrden] = useState('')
     const [loading, setLoading] = useState(false)
     const [mensajeCheckout, setMensajeCheckout] = useState(false)
     const [toast, setToast] = useState(false)
+    const [toastText, setToastText] = useState('')
+    
+
     const ordenCompletada = <div> Tu orden fue completada con exito, ante cualquier duda comunicarse con el id de orden: {idDeOrden} </div>
-  
-    const submitForm = ()=>{
+    
+    const onFormSubmit = (telefono, email, email2, nombre)=>{
         setLoading(true)
+        if(email2 != email){
+            setToastText('Los emails proporcionados son diferentes.')
+            return setToast(true)
+        }
         const productosCheckout = carrito.map((producto)=> {
             firestore.collection('productos').doc(`${producto.item.id}`).update({
                 stock: producto.item.stock - producto.quantity
@@ -45,6 +47,7 @@ const CartCheckout = ({carrito, totalPrice})=>{
             setLoading(false)
             setMensajeCheckout(true)
         }).catch( () =>{
+            setToastText('Su pedido no pudo ser colocado, intentelo nuevamente')
             setToast(true)
         })
     }
@@ -53,17 +56,8 @@ const CartCheckout = ({carrito, totalPrice})=>{
             {mensajeCheckout ? ordenCompletada :
                 <>
                     <div className='checkout'>
-                        <div className='form'>
-                            <FloatingLabel controlId="name" label="Nombre" className="mb-3">
-                                <Form.Control type="name" placeholder="Nombre" onChange={(e)=>setNombre(e.target.value)} />
-                            </FloatingLabel>
-                            <FloatingLabel controlId="email" label="Email" className="mb-3">
-                                <Form.Control type="email" placeholder="Email" onChange={(e)=>setEmail(e.target.value)} />
-                            </FloatingLabel>
-                            <FloatingLabel controlId="phone" label="Telefono" className="mb-3">
-                                <Form.Control type="phone" placeholder="Telefono" onChange={(e)=>setTelefono(e.target.value)} />
-                            </FloatingLabel>
-                        </div>
+                       <CustomForm onFormSubmit={ onFormSubmit } loading={ loading } />
+                       { toast && <ToastMessege setToast={setToast} title='Hubo un error' text={toastText} /> }
                         <div className='productos'>
                             {carrito.map((producto)=>{
                                 return (
@@ -83,10 +77,7 @@ const CartCheckout = ({carrito, totalPrice})=>{
                             }
                         </div>
                     </div>
-                    <Button variant="primary" type="submit" onClick={submitForm}>
-                        {loading? <Loading /> : 'Enviar'}
-                    </Button>
-                    { toast && <ToastMessege setToast={setToast} title='Hubo un error' text='Su pedido no pudo ser colocado, intentelo nuevamente' /> }
+                   
                 </>
             }
         </div>

@@ -3,7 +3,7 @@ nav{
     flex-direction: row;
     position: fixed;
     z-index: 2;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: rgba(53,44,39,0.8);
     width:100%;
     top: 0px;
@@ -13,7 +13,7 @@ a {
     color: white;
 }
 
-.carritodibujo{
-    width: 100%;
-    color:white;
+.cartWidget{
+    display: flex;
+    flex-direction: row;
 }

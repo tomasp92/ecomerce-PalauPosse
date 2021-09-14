@@ -12,7 +12,7 @@ const CartItem = ({ quantity, title, img, description, price, id})=> {
             <Card.Img variant="top" src={img} />
             <Card.Body className='cartItemBody'>
                 <Card.Title>{title}</Card.Title>
-                <Card.Text>{description}</Card.Text>
+                <Card.Text className='cardText'>{description}</Card.Text>
                 <div>{price}</div>
                 <div>{quantity}</div>
             </Card.Body>

@@ -1,13 +1,19 @@
 import ItemCount from './../ItemCount/index'
 import Card from 'react-bootstrap/Card'
-import './Styles.css'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import CartContext from '../../CartContext'
 const ItemDetail = ({ item }) => {
-  const {addItem} = useContext(CartContext)
-  
+  const [stock, setStock] = useState(item.stock)
+  const {addItem, carrito} = useContext(CartContext)
+
+  useEffect(() => {
+    const productoEnCarrito = carrito.find(producto => producto.item.id == item.id)
+    if (productoEnCarrito) setStock(item.stock - productoEnCarrito.quantity)
+
+  }, [carrito, item])
   let history = useHistory()
+  
   const [itemNumber, setItemNumber] = useState(false)
   const onAdd = (cantidad) => {
     setItemNumber(cantidad)
@@ -16,7 +22,7 @@ const ItemDetail = ({ item }) => {
     addItem(item, itemNumber)
     history.push('/Cart')
   }
-  console.log(item)
+
   return (
     <Card className="card">
         <Card.Img variant="top" src={item.pictureUrl} />
@@ -30,7 +36,7 @@ const ItemDetail = ({ item }) => {
             </div>
             { itemNumber ? 
               <button onClick={addToCart }>Termina tu compra</button> : 
-              <ItemCount stock={item.stock} initial={1} onAdd={onAdd} />
+              <ItemCount stock={stock} initial={1} onAdd={onAdd} />
             }
         </Card.Body>
     </Card>
